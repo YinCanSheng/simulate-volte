@@ -10,21 +10,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_margin="5px"
-            android:text="网络接口名称"/>
+            android:padding="10dp"
+            android:text="目标IPV6地址"/>
         <EditText
-            android:id="@+id/txt_network"
+            android:id="@+id/et_dstip"
             android:layout_width="0px"
             android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:hint="例如 rmnet_data0"/>
+            android:gravity="center"
+            android:layout_margin="5px"
+            android:padding="10dp"
+            android:text="网络接口名称"/>
+        <Spinner
+            android:id="@+id/spinner_networks"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_height="match_parent"></Spinner>
     </LinearLayout>
 
     <Button
@@ -32,5 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="发送"/>
+
+    <TextView
+        android:id="@+id/tv_networks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="网络接口"/>
 
 </LinearLayout>

@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,58 +24,93 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<String> networks = new ArrayList<String>();
+
     private InetAddress address = null;
     private Integer port = 5060;
     private InetAddress inet = null;
 
-    private EditText txt_network = null;
     private Button btn_send = null;
+    private TextView tv_networks = null;
+    private Spinner spinner_networks = null;
+    private EditText et_dstip = null;
+    private ArrayAdapter<String> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txt_network = (EditText) findViewById(R.id.txt_network);
         btn_send = (Button) findViewById(R.id.btn_send);
+        tv_networks = (TextView) findViewById(R.id.tv_networks);
+        spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
+        et_dstip = (EditText) findViewById(R.id.et_dstip);
+
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface iface : interfaces) {
+                if (iface.isUp() && !iface.getDisplayName().equals("lo"))
+                    networks.add(iface.getDisplayName());
+            }
+        } catch (SocketException e) {
+
+        }
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, networks.toArray(new String[networks.size()]));
+        //设置下拉列表风格
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //将适配器添加到spinner中去
+        spinner_networks.setAdapter(adapter);
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String network_name = txt_network.getText().toString();
-                Log.d("network", network_name);
-                try {
-                    address = Inet6Address.getByName("2409:8800:8a10:fbb2::1");
+                if (false) {
+                    Toast.makeText(MainActivity.this, "请输入正确的 IPv6 地址", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        address = Inet6Address.getByName(et_dstip.getText().toString()); //Inet6Address.getByName("2409:8010:8810:1:1003:1003::");
 
-                    List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-                    for (NetworkInterface iface : interfaces) {
-                        if (iface.getDisplayName().equals(network_name)) {
-                            Enumeration<InetAddress> nifAddresses = iface.getInetAddresses();
+                        List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+                        for (NetworkInterface iface : interfaces) {
+                            if (iface.getDisplayName().equals(spinner_networks.getSelectedItem().toString())) {
+                                Enumeration<InetAddress> nifAddresses = iface.getInetAddresses();
 
-                            while (nifAddresses.hasMoreElements()) {
-                                InetAddress ni = nifAddresses.nextElement();
-                                if (ni.toString().substring(1, 5).equals("2409")) {
-                                    Log.i(">>>>>>", ni.toString());
-                                    inet = ni;
+                                while (nifAddresses.hasMoreElements()) {
+                                    InetAddress ni = nifAddresses.nextElement();
+                                    if (ni.toString().substring(1, 5).equals("2409")) {
+                                        Log.i(">>>>>>", ni.toString());
+                                        inet = ni;
 
-                                    // new SendUDPSocketTask().execute();
-                                    new SendUDPSocketTask().execute();
-                                    break;
+                                        // new SendUDPSocketTask().execute();
+                                        new SendUDPSocketTask().execute();
+                                        break;
+                                    }
                                 }
                             }
                         }
+                    } catch (IOException e) {
+                        Log.e("err", e.getMessage());
                     }
-                } catch (IOException e) {
-                    Log.e("err", e.getMessage());
                 }
             }
         });
+    }
+
+    public boolean isIPv6(String str) {
+        if (!Pattern.matches("[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]", str))
+            return false;
+        return true;
     }
 
     private class SendUDPSocketTask extends AsyncTask<String, Void, String> {
@@ -139,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                             "Allow: INVITE,BYE,CANCEL,ACK,NOTIFY,UPDATE,PRACK,INFO,MESSAGE,OPTIONS\r\n" +
                             "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n" +
                             "l: 0\r\n\r\n";
-                    DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length);
+                    DatagramPacket packet = new DatagramPacket(invite.getBytes(), invite.getBytes().length);
                     socket.setSoTimeout(10000);
                     socket.send(packet);
                 }
@@ -237,43 +276,42 @@ public class MainActivity extends AppCompatActivity {
                     "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n\r\n";
 
 
-            try{
+            try {
                 //客户端请求与本机在20006端口建立TCP连接
                 socket = new Socket();
                 socket.bind(new InetSocketAddress(inet, 0));
-                if(!socket.isBound()){
+                if (!socket.isBound()) {
                     socket.close();
                     return null;
                 }
                 socket.connect(new InetSocketAddress(address, 5060));
                 socket.setSoTimeout(10000);
                 //获取Socket的输入流，用来接收从服务端发送过来的数据
-                BufferedReader buf =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 //获取Socket的输出流，用来发送数据到服务端
                 PrintStream out = new PrintStream(socket.getOutputStream());
                 boolean flag = true;
-                while(flag){
+                while (flag) {
                     String str = option;
                     //发送数据到服务端
                     out.println(str);
-                    if("bye".equals(str)){
+                    if ("bye".equals(str)) {
                         flag = false;
-                    }else{
-                        try{
+                    } else {
+                        try {
                             //从服务器端接收数据有个时间限制（系统自设，也可以自己设置），超过了这个时间，便会抛出该异常
                             String echo = buf.readLine();
                             Log.d("res", echo);
-                        }catch(SocketTimeoutException e){
+                        } catch (SocketTimeoutException e) {
                             Log.d("res", "Time out, No response");
                         }
                     }
                 }
-                if(socket != null){
+                if (socket != null) {
                     //如果构造函数建立起了连接，则关闭套接字，如果没有建立起连接，自然不用关闭
                     socket.close(); //只关闭socket，其关联的输入输出流也会被关闭
                 }
-            }
-            catch (IOException e){
+            } catch (IOException e) {
 
             }
             return null;
