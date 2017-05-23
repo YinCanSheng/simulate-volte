@@ -1,7 +1,7 @@
 package com.example.chinesejar.sipdemo;
 
 import android.os.AsyncTask;
-import android.provider.MediaStore;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,13 +27,10 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.security.cert.TrustAnchor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,16 +51,9 @@ public class MainActivity extends AppCompatActivity {
     // radio
     private RadioGroup radio_group_socket = null;
     private RadioGroup radio_group_package = null;
-    private RadioButton radio_tcp = null;
-    private RadioButton radio_udp = null;
-    private RadioButton radio_register = null;
-    private RadioButton radio_invite = null;
-    private RadioButton radio_option = null;
-    private RadioButton radio_refer = null;
 
-    private Integer socket_id = 0;
-    private Integer package_id = 0;
-
+    private String socket_data = "TCP";
+    private String package_data = "REGISTER";
     private String option = "OPTIONS sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
             "Via: SIP/2.0/TCP [2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;branch=z9hG4bK1519469541\r\n" +
             "Max-Forwards: 70\r\n" +
@@ -131,10 +121,24 @@ public class MainActivity extends AppCompatActivity {
         //radio
         radio_group_package = (RadioGroup) findViewById(R.id.radio_group_package);
         radio_group_socket = (RadioGroup) findViewById(R.id.radio_group_socket);
-        radio_register = (RadioButton) findViewById(R.id.radio_register);
-        radio_invite = (RadioButton) findViewById(R.id.radio_invite);
-        radio_option = (RadioButton) findViewById(R.id.radio_option);
-        radio_refer = (RadioButton) findViewById(R.id.radio_refer);
+
+        radio_group_socket.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton rd = (RadioButton) findViewById(checkedId);
+                socket_data = rd.getText().toString();
+                Log.d("socket checked", rd.getText().toString());
+            }
+        });
+
+        radio_group_package.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton rd = (RadioButton) findViewById(checkedId);
+                package_data = rd.getText().toString();
+                Log.d("package checked", rd.getText().toString());
+            }
+        });
 
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -172,16 +176,12 @@ public class MainActivity extends AppCompatActivity {
                                         Log.i(">>>>>>", ni.toString());
                                         inet = ni;
 
-                                        for (int i = 0; i<radio_group_socket.getChildCount();i++){
-                                            RadioButton rb = (RadioButton) radio_group_socket.getChildAt(i);
-                                            if(rb.isChecked()){
-                                                if(rb.getText().equals("TCP")){
-                                                    new SendTCPSocketTask().execute();
-                                                }else if(rb.getText().equals("UDP")){
-                                                    new SendUDPSocketTask().execute();
-                                                }
-                                            }
+                                        if(socket_data.equals("TCP")){
+                                            new SendTCPSocketTask().execute();
+                                        }else if(socket_data.equals("UDP")){
+                                            new SendUDPSocketTask().execute();
                                         }
+
                                         break;
                                     }
                                 }
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                 if (socket.isBound()) {
                     socket.connect(new InetSocketAddress(address, 5060));
 
-                    DatagramPacket packet = new DatagramPacket(invite.getBytes(), invite.getBytes().length);
+                    DatagramPacket packet = new DatagramPacket(package_data.getBytes(), package_data.getBytes().length);
 
                     byte[] inBuff = new byte[4096];
                     // 以指定的字节数组创建准备接收数据的DatagramPacket对象
@@ -274,8 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 //获取Socket的输出流，用来发送数据到服务端
                 PrintStream out = new PrintStream(socket.getOutputStream());
-                boolean flag = true;
-                String str = option;
+                String str = package_data;
                 //发送数据到服务端
                 out.println(str);
 
