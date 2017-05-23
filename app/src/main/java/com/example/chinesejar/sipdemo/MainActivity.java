@@ -64,6 +64,58 @@ public class MainActivity extends AppCompatActivity {
     private Integer socket_id = 0;
     private Integer package_id = 0;
 
+    private String option = "OPTIONS sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
+            "Via: SIP/2.0/TCP [2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;branch=z9hG4bK1519469541\r\n" +
+            "Max-Forwards: 70\r\n" +
+            "To: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
+            "From: <tel:+8615008603839>;tag=1706771325\r\n" +
+            "Call-ID: 1706771314_2327899832@2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617\r\n" +
+            "CSeq: 633029490 OPTIONS\r\n" +
+            "Contact: <sip:+8615008603839@[2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;user=phone>;+g.3gpp.icsi-ref=\\\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\\\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
+            "Accept: application/sdp\r\n" +
+            "Content-Length: 0\r\n\r\n";
+
+    private String invite = "INVITE tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
+            "f: <tel:+8615008603839>;tag=1769475601\r\n" +
+            "t: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
+            "CSeq: 695733763 INVITE\r\n" +
+            "i: 1769475587_2328286360@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
+            "v: SIP/2.0/TCP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;branch=z9hG4bK3750862093\r\n" +
+            "Max-Forwards: 70\r\n" +
+            "m: <sip:+8615008603839@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;user=phone>;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
+            "Route: <sip:[2409:8010:8210:1:1004:1004::]:9900;lr>,<sip:orig@ycscscf1bhw.nx.chinamobile.com;lr;Dpt=7c04_7f888246;ca=2385;TRC=ffffffff-ffffffff>\r\n" +
+            "P-Access-Network-Info: 3GPP-E-UTRAN-TDD; utran-cell-id-3gpp=46000102D108F00D\r\n" +
+            "Security-Verify: ipsec-3gpp;alg=hmac-md5-96;prot=esp;mod=trans;ealg=null;spi-c=2634663370;spi-s=3399226064;port-c=9950;port-s=9900\r\n" +
+            "Proxy-Require: sec-agree\r\n" +
+            "Require: sec-agree\r\n" +
+            "P-Preferred-Identity: <tel:+8615008603839>\r\n" +
+            "Allow: INVITE,ACK,CANCEL,BYE,UPDATE,PRACK,MESSAGE,REFER,NOTIFY,INFO\r\n" +
+            "c: application/sdp\r\n" +
+            "Accept: application/sdp,application/3gpp-ims+xml\r\n" +
+            "P-Preferred-Service: urn:urn-7:3gpp-service.ims.icsi.mmtel\r\n" +
+            "a: *;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\"\r\n" +
+            "k: 100rel,replaces,precondition,histinfo\r\n" +
+            "P-Early-Media: supported\r\n" +
+            "l: 655\r\n\r\n";
+
+    private String message = "REGISTER sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
+            "f: <sip:460027953821652@ims.mnc002.mcc460.3gppnetwork.org>;tag=1769466696\r\n" +
+            "t: <sip:460027953821652@ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
+            "CSeq: 695724863 REGISTER\r\n" +
+            "i: 1769466687_2327919096@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
+            "v: SIP/2.0/TCP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;branch=z9hG4bK3700662738\r\n" +
+            "Max-Forwards: 70\r\n" +
+            "m: <sip:460027953821652@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904>;+sip.instance=\"<urn:gsma:imei:86717902-002037-0>\";+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";+g.3gpp.smsip;video\r\n" +
+            "l: 0\r\n" +
+            "Authorization: Digest uri=\"sip:ims.mnc002.mcc460.3gppnetwork.org\",username=\"460027953821652@ims.mnc002.mcc460.3gppnetwork.org\",response=\"\",realm=\"ims.mnc002.mcc460.3gppnetwork.org\",nonce=\"\"\r\n" +
+            "Expires: 600000\r\n" +
+            "Require: sec-agree\r\n" +
+            "Proxy-Require: sec-agree\r\n" +
+            "k: path,sec-agree\r\n" +
+            "Allow: INVITE,BYE,CANCEL,ACK,NOTIFY,UPDATE,PRACK,INFO,MESSAGE,OPTIONS\r\n" +
+            "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n\r\n";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,55 +218,6 @@ public class MainActivity extends AppCompatActivity {
                 if (socket.isBound()) {
                     socket.connect(new InetSocketAddress(address, 5060));
 
-                    String option = "OPTIONS sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                            "Via: SIP/2.0/TCP [2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;branch=z9hG4bK1519469541\r\n" +
-                            "Max-Forwards: 70\r\n" +
-                            "To: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
-                            "From: <tel:+8615008603839>;tag=1706771325\r\n" +
-                            "Call-ID: 1706771314_2327899832@2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617\r\n" +
-                            "CSeq: 633029490 OPTIONS\r\n" +
-                            "Contact: <sip:+8615008603839@[2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;user=phone>;+g.3gpp.icsi-ref=\\\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\\\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
-                            "Accept: application/sdp\r\n" +
-                            "Content-Length: 0\r\n\r\n";
-
-                    String invite = "INVITE tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                            "f: <tel:+8615008603839>;tag=1769475601\r\n" +
-                            "t: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
-                            "CSeq: 695733763 INVITE\r\n" +
-                            "i: 1769475587_2328286360@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
-                            "v: SIP/2.0/TCP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;branch=z9hG4bK3750862093\r\n" +
-                            "Max-Forwards: 70\r\n" +
-                            "m: <sip:+8615008603839@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;user=phone>;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
-                            "Route: <sip:[2409:8010:8210:1:1004:1004::]:9900;lr>,<sip:orig@ycscscf1bhw.nx.chinamobile.com;lr;Dpt=7c04_7f888246;ca=2385;TRC=ffffffff-ffffffff>\r\n" +
-                            "P-Access-Network-Info: 3GPP-E-UTRAN-TDD; utran-cell-id-3gpp=46000102D108F00D\r\n" +
-                            "Security-Verify: ipsec-3gpp;alg=hmac-md5-96;prot=esp;mod=trans;ealg=null;spi-c=2634663370;spi-s=3399226064;port-c=9950;port-s=9900\r\n" +
-                            "Proxy-Require: sec-agree\r\n" +
-                            "Require: sec-agree\r\n" +
-                            "P-Preferred-Identity: <tel:+8615008603839>\r\n" +
-                            "Allow: INVITE,ACK,CANCEL,BYE,UPDATE,PRACK,MESSAGE,REFER,NOTIFY,INFO\r\n" +
-                            "c: application/sdp\r\n" +
-                            "Accept: application/sdp,application/3gpp-ims+xml\r\n" +
-                            "P-Preferred-Service: urn:urn-7:3gpp-service.ims.icsi.mmtel\r\n" +
-                            "a: *;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\"\r\n" +
-                            "k: 100rel,replaces,precondition,histinfo\r\n" +
-                            "P-Early-Media: supported\r\n" +
-                            "l: 655\r\n\r\n";
-                    String message = "REGISTER sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                            "f: <sip:460027953821652ddd@ims.mnc002.mcc460.3gppnetwork.org>;tag=1769466696\r\n" +
-                            "t: <sip:460027953821652@ims.mnc000.mcc460.3gppnetwork.org>\r\n" +
-                            "CSeq: 695724864 REGISTER\r\n" +
-                            "i: 1769466687_2327919096@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
-                            "v: SIP/2.0/UDP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:5060;branch=z9hG4bK3700662738\r\n" +
-                            "Max-Forwards: 70\r\n" +
-                            "m: <sip:460027953821652@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:5060>;+sip.instance=\"<urn:gsma:imei:86717902-002037-0>\";+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";+g.3gpp.smsip;video\r\n" +
-                            "Authorization: Digest uri=\"sip:ims.mnc002.mcc460.3gppnetwork.org\",username=\"460027953821652@ims.mnc002.mcc460.3gppnetwork.org\",response=\"\",realm=\"ims.mnc002.mcc460.3gppnetwork.org\",nonce=\"\"\r\n" +
-                            "Expires: 600000\r\n" +
-                            "Require: sec-agree\r\n" +
-                            "Proxy-Require: sec-agree\r\n" +
-                            "k: path,sec-agree\r\n" +
-                            "Allow: INVITE,BYE,CANCEL,ACK,NOTIFY,UPDATE,PRACK,INFO,MESSAGE,OPTIONS\r\n" +
-                            "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n" +
-                            "l: 0\r\n\r\n";
                     DatagramPacket packet = new DatagramPacket(invite.getBytes(), invite.getBytes().length);
 
                     byte[] inBuff = new byte[4096];
@@ -255,58 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-
-            String option = "OPTIONS sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                    "Via: SIP/2.0/TCP [2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;branch=z9hG4bK1519469541\r\n" +
-                    "Max-Forwards: 70\r\n" +
-                    "To: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
-                    "From: <tel:+8615008603839>;tag=1706771325\r\n" +
-                    "Call-ID: 1706771314_2327899832@2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617\r\n" +
-                    "CSeq: 633029490 OPTIONS\r\n" +
-                    "Contact: <sip:+8615008603839@[2409:8800:8a03:3f8f:e19b:3c22:ddb1:5617]:8901;user=phone>;+g.3gpp.icsi-ref=\\\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\\\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
-                    "Accept: application/sdp\r\n" +
-                    "Content-Length: 0\r\n\r\n";
-
-            String invite = "INVITE tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                    "f: <tel:+8615008603839>;tag=1769475601\r\n" +
-                    "t: <tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
-                    "CSeq: 695733763 INVITE\r\n" +
-                    "i: 1769475587_2328286360@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
-                    "v: SIP/2.0/TCP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;branch=z9hG4bK3750862093\r\n" +
-                    "Max-Forwards: 70\r\n" +
-                    "m: <sip:+8615008603839@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;user=phone>;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";video;+g.3gpp.mid-call;+g.3gpp.srvcc-alerting;+g.3gpp.ps2cs-srvcc-orig-pre-alerting\r\n" +
-                    "Route: <sip:[2409:8010:8210:1:1004:1004::]:9900;lr>,<sip:orig@ycscscf1bhw.nx.chinamobile.com;lr;Dpt=7c04_7f888246;ca=2385;TRC=ffffffff-ffffffff>\r\n" +
-                    "P-Access-Network-Info: 3GPP-E-UTRAN-TDD; utran-cell-id-3gpp=46000102D108F00D\r\n" +
-                    "Security-Verify: ipsec-3gpp;alg=hmac-md5-96;prot=esp;mod=trans;ealg=null;spi-c=2634663370;spi-s=3399226064;port-c=9950;port-s=9900\r\n" +
-                    "Proxy-Require: sec-agree\r\n" +
-                    "Require: sec-agree\r\n" +
-                    "P-Preferred-Identity: <tel:+8615008603839>\r\n" +
-                    "Allow: INVITE,ACK,CANCEL,BYE,UPDATE,PRACK,MESSAGE,REFER,NOTIFY,INFO\r\n" +
-                    "c: application/sdp\r\n" +
-                    "Accept: application/sdp,application/3gpp-ims+xml\r\n" +
-                    "P-Preferred-Service: urn:urn-7:3gpp-service.ims.icsi.mmtel\r\n" +
-                    "a: *;+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\"\r\n" +
-                    "k: 100rel,replaces,precondition,histinfo\r\n" +
-                    "P-Early-Media: supported\r\n" +
-                    "l: 655\r\n\r\n";
-
-            String message = "REGISTER sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
-                    "f: <sip:460027953821652@ims.mnc002.mcc460.3gppnetwork.org>;tag=1769466696\r\n" +
-                    "t: <sip:460027953821652@ims.mnc002.mcc460.3gppnetwork.org>\r\n" +
-                    "CSeq: 695724863 REGISTER\r\n" +
-                    "i: 1769466687_2327919096@2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8\r\n" +
-                    "v: SIP/2.0/TCP [2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904;branch=z9hG4bK3700662738\r\n" +
-                    "Max-Forwards: 70\r\n" +
-                    "m: <sip:460027953821652@[2409:8800:8a03:3f8f:ab28:5799:cd69:d1e8]:8904>;+sip.instance=\"<urn:gsma:imei:86717902-002037-0>\";+g.3gpp.icsi-ref=\"urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel\";+g.3gpp.smsip;video\r\n" +
-                    "l: 0\r\n" +
-                    "Authorization: Digest uri=\"sip:ims.mnc002.mcc460.3gppnetwork.org\",username=\"460027953821652@ims.mnc002.mcc460.3gppnetwork.org\",response=\"\",realm=\"ims.mnc002.mcc460.3gppnetwork.org\",nonce=\"\"\r\n" +
-                    "Expires: 600000\r\n" +
-                    "Require: sec-agree\r\n" +
-                    "Proxy-Require: sec-agree\r\n" +
-                    "k: path,sec-agree\r\n" +
-                    "Allow: INVITE,BYE,CANCEL,ACK,NOTIFY,UPDATE,PRACK,INFO,MESSAGE,OPTIONS\r\n" +
-                    "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n\r\n";
-
+            String res = "";
 
             try {
                 //客户端请求与本机在20006端口建立TCP连接
@@ -323,34 +275,29 @@ public class MainActivity extends AppCompatActivity {
                 //获取Socket的输出流，用来发送数据到服务端
                 PrintStream out = new PrintStream(socket.getOutputStream());
                 boolean flag = true;
-                while (flag) {
-                    String str = option;
-                    //发送数据到服务端
-                    out.println(str);
-                    if ("bye".equals(str)) {
-                        flag = false;
-                    } else {
-                        try {
-                            //从服务器端接收数据有个时间限制（系统自设，也可以自己设置），超过了这个时间，便会抛出该异常
-                            String echo = buf.readLine();
-                            Log.d("res", echo);
-                        } catch (SocketTimeoutException e) {
-                            Log.d("res", "Time out, No response");
-                        }
-                    }
+                String str = option;
+                //发送数据到服务端
+                out.println(str);
+
+                String reply=null;
+                while(!((reply=buf.readLine())==null)){
+                    res += reply+"\n";
                 }
+
                 if (socket != null) {
+                    socket.shutdownOutput();
                     //如果构造函数建立起了连接，则关闭套接字，如果没有建立起连接，自然不用关闭
                     socket.close(); //只关闭socket，其关联的输入输出流也会被关闭
                 }
             } catch (IOException e) {
 
             }
-            return null;
+            return res;
         }
 
         @Override
         protected void onPostExecute(String result) {
+            tv_receive.append(result);
         }
 
         //onCancelled方法用于在取消执行中的任务时更改UI

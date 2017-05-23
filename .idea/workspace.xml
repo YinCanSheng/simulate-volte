@@ -19,7 +19,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/chinesejar/sipdemo/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/chinesejar/sipdemo/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
     </list>
     <ignored path="simulate-volte.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,17 +46,19 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chinesejar/sipdemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="332" column="29" selection-start-line="332" selection-start-column="29" selection-end-line="332" selection-end-column="29" />
+            <state relative-caret-position="264">
+              <caret line="218" column="73" selection-start-line="218" selection-start-column="73" selection-end-line="218" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1189#1197#0" expanded="true" />
-                <element signature="e#3782#6055#0" expanded="true" />
-                <element signature="e#6054#6055#0" expanded="true" />
-                <element signature="e#6096#6252#0" expanded="true" />
-                <element signature="e#6251#6252#0" expanded="true" />
-                <element signature="e#12972#12973#0" expanded="true" />
-                <element signature="e#13021#13022#0" expanded="true" />
+                <element signature="e#8423#10696#0" expanded="true" />
+                <element signature="e#10695#10696#0" expanded="true" />
+                <element signature="e#10737#10893#0" expanded="true" />
+                <element signature="e#10892#10893#0" expanded="true" />
+                <element signature="e#12228#12229#0" expanded="true" />
+                <element signature="e#12277#12278#0" expanded="true" />
+                <element signature="e#14021#14022#0" expanded="true" />
+                <element signature="e#14070#14071#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1880,7 +1881,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="126" />
+    <option name="x" value="30" />
     <option name="y" value="30" />
     <option name="width" value="2289" />
     <option name="height" value="1345" />
@@ -2356,7 +2357,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="126" y="30" width="2289" height="1345" extended-state="0" />
+    <frame x="30" y="30" width="2289" height="1345" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2426,17 +2427,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/chinesejar/sipdemo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="332" column="29" selection-start-line="332" selection-start-column="29" selection-end-line="332" selection-end-column="29" />
+        <state relative-caret-position="264">
+          <caret line="218" column="73" selection-start-line="218" selection-start-column="73" selection-end-line="218" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1189#1197#0" expanded="true" />
-            <element signature="e#3782#6055#0" expanded="true" />
-            <element signature="e#6054#6055#0" expanded="true" />
-            <element signature="e#6096#6252#0" expanded="true" />
-            <element signature="e#6251#6252#0" expanded="true" />
-            <element signature="e#12972#12973#0" expanded="true" />
-            <element signature="e#13021#13022#0" expanded="true" />
+            <element signature="e#8423#10696#0" expanded="true" />
+            <element signature="e#10695#10696#0" expanded="true" />
+            <element signature="e#10737#10893#0" expanded="true" />
+            <element signature="e#10892#10893#0" expanded="true" />
+            <element signature="e#12228#12229#0" expanded="true" />
+            <element signature="e#12277#12278#0" expanded="true" />
+            <element signature="e#14021#14022#0" expanded="true" />
+            <element signature="e#14070#14071#0" expanded="true" />
           </folding>
         </state>
       </provider>
