@@ -185,22 +185,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            while (true) {
-                byte[] recbuf = new byte[255];
-                DatagramPacket recpacket = new DatagramPacket(recbuf,
-                        recbuf.length);
-                try {
-                    socket.setSoTimeout(3000);
-                    socket.receive(recpacket);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                String recdata = recpacket.getData().toString();
-                Log.d("rec", "Server: Message received: " + recdata);
-                Log.d("rec", "Server: IP " + recpacket.getAddress());
-            }
         }
 
         @Override
