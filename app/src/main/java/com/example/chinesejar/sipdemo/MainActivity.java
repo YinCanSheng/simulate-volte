@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -26,6 +25,7 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.security.cert.TrustAnchor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinner_networks = null;
     private EditText et_dstip = null;
     private ArrayAdapter<String> adapter = null;
+    private TextView tv_receive = null;
+
+    private Integer socket_id = 0;
+    private Integer package_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         tv_networks = (TextView) findViewById(R.id.tv_networks);
         spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
         et_dstip = (EditText) findViewById(R.id.et_dstip);
+        tv_receive = (TextView) findViewById(R.id.tv_receive);
 
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -105,12 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public boolean isIPv6(String str) {
-        if (!Pattern.matches("[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][:][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]", str))
-            return false;
-        return true;
     }
 
     private class SendUDPSocketTask extends AsyncTask<String, Void, String> {
@@ -179,8 +178,17 @@ public class MainActivity extends AppCompatActivity {
                             "Security-Client: ipsec-3gpp; alg=hmac-md5-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-md5-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=des-ede3-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=aes-cbc; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904,ipsec-3gpp; alg=hmac-sha-1-96; ealg=null; spi-c=1028536224; spi-s=455113919; port-c=8034; port-s=8904\r\n" +
                             "l: 0\r\n\r\n";
                     DatagramPacket packet = new DatagramPacket(invite.getBytes(), invite.getBytes().length);
+
+                    byte[] inBuff = new byte[4096];
+                    // 以指定的字节数组创建准备接收数据的DatagramPacket对象
+                    DatagramPacket inPacket = new DatagramPacket(inBuff , inBuff.length);
+
                     socket.setSoTimeout(10000);
                     socket.send(packet);
+                    socket.receive(inPacket);
+                    String rec_res = new String(inBuff, 0, inPacket.getLength());
+                    Log.d("rec", rec_res);
+                    return rec_res;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -190,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            tv_receive.append(result);
         }
 
         //onCancelled方法用于在取消执行中的任务时更改UI
