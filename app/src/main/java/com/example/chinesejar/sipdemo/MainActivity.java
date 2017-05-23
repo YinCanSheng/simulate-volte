@@ -1,6 +1,7 @@
 package com.example.chinesejar.sipdemo;
 
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
     private EditText et_dstip = null;
     private ArrayAdapter<String> adapter = null;
     private TextView tv_receive = null;
+    private Button btn_clear = null;
+
+    // radio
+    private RadioGroup radio_group_socket = null;
+    private RadioGroup radio_group_package = null;
+    private RadioButton radio_tcp = null;
+    private RadioButton radio_udp = null;
+    private RadioButton radio_register = null;
+    private RadioButton radio_invite = null;
+    private RadioButton radio_option = null;
+    private RadioButton radio_refer = null;
 
     private Integer socket_id = 0;
     private Integer package_id = 0;
@@ -60,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
         spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
         et_dstip = (EditText) findViewById(R.id.et_dstip);
         tv_receive = (TextView) findViewById(R.id.tv_receive);
+        btn_clear = (Button) findViewById(R.id.btn_clear);
+
+        //radio
+        radio_group_package = (RadioGroup) findViewById(R.id.radio_group_package);
+        radio_group_socket = (RadioGroup) findViewById(R.id.radio_group_socket);
+        radio_register = (RadioButton) findViewById(R.id.radio_register);
+        radio_invite = (RadioButton) findViewById(R.id.radio_invite);
+        radio_option = (RadioButton) findViewById(R.id.radio_option);
+        radio_refer = (RadioButton) findViewById(R.id.radio_refer);
 
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -97,8 +120,16 @@ public class MainActivity extends AppCompatActivity {
                                         Log.i(">>>>>>", ni.toString());
                                         inet = ni;
 
-                                        // new SendUDPSocketTask().execute();
-                                        new SendUDPSocketTask().execute();
+                                        for (int i = 0; i<radio_group_socket.getChildCount();i++){
+                                            RadioButton rb = (RadioButton) radio_group_socket.getChildAt(i);
+                                            if(rb.isChecked()){
+                                                if(rb.getText().equals("TCP")){
+                                                    new SendTCPSocketTask().execute();
+                                                }else if(rb.getText().equals("UDP")){
+                                                    new SendUDPSocketTask().execute();
+                                                }
+                                            }
+                                        }
                                         break;
                                     }
                                 }
@@ -108,6 +139,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("err", e.getMessage());
                     }
                 }
+            }
+        });
+
+        btn_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_receive.setText("");
             }
         });
     }

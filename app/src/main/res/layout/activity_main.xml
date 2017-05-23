@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioGroup
-            android:id="@+id/socket_type"
+            android:id="@+id/radio_group_socket"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioGroup
-            android:id="@+id/package_type"
+            android:id="@+id/radio_group_package"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -140,6 +140,7 @@
             android:layout_height="wrap_content"
             android:text="发送"/>
         <Button
+            android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="清除"/>
