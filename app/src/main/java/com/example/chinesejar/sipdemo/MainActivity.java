@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -30,10 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText et_dstip = null;
     private ArrayAdapter<String> adapter = null;
     private TextView tv_receive = null;
-
     private Button btn_send = null;
     private Button btn_clear = null;
 
+    private RadioGroup socketRadioGroup = null;
+    private RadioGroup packageRadioGroup = null;
     private String socket_type = "TCP";
     private String package_type = "REGISTER";
 
@@ -50,14 +52,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(this);
 
         spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
         et_dstip = (EditText) findViewById(R.id.et_dstip);
         tv_receive = (TextView) findViewById(R.id.tv_receive);
 
+        socketRadioGroup = (RadioGroup) findViewById(R.id.radio_group_socket);
+        socketRadioGroup.setOnCheckedChangeListener(this);
+        packageRadioGroup = (RadioGroup) findViewById(R.id.radio_group_package);
+        packageRadioGroup.setOnCheckedChangeListener(this);
         btn_send = (Button) findViewById(R.id.btn_send);
-        btn_clear = (Button) findViewById(R.id.btn_clear);
         btn_send.setOnClickListener(this);
+        btn_clear = (Button) findViewById(R.id.btn_clear);
         btn_clear.setOnClickListener(this);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mainPresenter.getNetworkInterfaces());
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.radio_group_package:
                 package_type = rd.getText().toString();
-                Log.d("package checked", socket_type);
+                Log.d("package checked", package_type);
                 break;
         }
     }
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_clear:
+                Log.d("click", "CLEAR");
                 tvClear();
                 break;
             case R.id.btn_send:

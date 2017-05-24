@@ -174,7 +174,7 @@ public class MainPresenter {
                     // 以指定的字节数组创建准备接收数据的DatagramPacket对象
                     DatagramPacket inPacket = new DatagramPacket(inBuff , inBuff.length);
 
-                    socket.setSoTimeout(10000);
+                    socket.setSoTimeout(5000);
                     socket.send(packet);
                     socket.receive(inPacket);
                     String rec_res = new String(inBuff, 0, inPacket.getLength());
@@ -183,12 +183,15 @@ public class MainPresenter {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                return e.getMessage() + "\n";
             }
-            return null;
+
+            return "没有任何回复\n";
         }
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d(TAG, result);
             view.sendSuccess(result);
         }
 
@@ -219,7 +222,7 @@ public class MainPresenter {
                     return null;
                 }
                 socket.connect(new InetSocketAddress(address, 5060));
-                socket.setSoTimeout(10000);
+                socket.setSoTimeout(5000);
                 //获取Socket的输入流，用来接收从服务端发送过来的数据
                 BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 //获取Socket的输出流，用来发送数据到服务端
@@ -239,13 +242,14 @@ public class MainPresenter {
                     socket.close(); //只关闭socket，其关联的输入输出流也会被关闭
                 }
             } catch (IOException e) {
-
+                return e.getMessage() + "\n";
             }
-            return res;
+            return "没有任何回复\n";
         }
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d(TAG, result);
             view.sendSuccess(result);
         }
 
