@@ -17,7 +17,7 @@
             android:gravity="center"
             android:layout_margin="5px"
             android:padding="10dp"
-            android:text="目标IPV6地址"/>
+            android:text="@string/dst_ipv6"/>
         <EditText
             android:id="@+id/et_dstip"
             android:layout_width="0px"
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:layout_margin="5px"
             android:padding="10dp"
-            android:text="网络接口名称"/>
+            android:text="@string/network_interface"/>
         <Spinner
             android:id="@+id/spinner_networks"
             android:layout_width="0px"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Socket 类型"/>
+        android:text="@string/socket_type"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="报文类型"/>
+        android:text="@string/package_type"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -138,12 +138,12 @@
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发送"/>
+            android:text="@string/btn_send"/>
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清除"/>
+            android:text="@string/btn_clear"/>
     </LinearLayout>
 
     <TextView
@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:hint="接收信息"/>
+        android:text="@string/receive"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         mainPresenter = new MainPresenter(this);
-        
+
         spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
         et_dstip = (EditText) findViewById(R.id.et_dstip);
         tv_receive = (TextView) findViewById(R.id.tv_receive);
