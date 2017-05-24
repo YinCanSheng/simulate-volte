@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/home/chinesejar/AndroidStudioProjects/simulate-volte/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar
-FILE_HASH=869026b614749a4d46d76e3316b472e870994b59
-DX_VERSION=1.13
-JUMBO_MODE=true
-OPTIMIZE=true

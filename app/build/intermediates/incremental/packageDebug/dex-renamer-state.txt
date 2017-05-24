@@ -1,7 +1,0 @@
-#Wed May 24 17:15:46 CST 2017
-base.0=/home/chinesejar/AndroidStudioProjects/simulate-volte/app/build/intermediates/transforms/dexMerger/debug/11
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/chinesejar/AndroidStudioProjects/simulate-volte/app/build/intermediates/transforms/dexMerger/debug/10/classes.dex
-base.1=/home/chinesejar/AndroidStudioProjects/simulate-volte/app/build/intermediates/transforms/dexMerger/debug/10
-file.0=/home/chinesejar/AndroidStudioProjects/simulate-volte/app/build/intermediates/transforms/dexMerger/debug/11/classes.dex
