@@ -1,0 +1,182 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/4eec02eff9bf1a38f5c8c51c8c6cfdb3/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7bcfed2adc073a7c779cb6596249e101/AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:17:1-31:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:1-40:12
+	package
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:3:5-45
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:6:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:9:5-76
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:9:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:12:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:15:5-76
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:15:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:18:5-67
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:18:22-64
+application
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:20:5-38:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/4eec02eff9bf1a38f5c8c51c8c6cfdb3/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/4eec02eff9bf1a38f5c8c51c8c6cfdb3/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:29:5-20
+	android:supportsRtl
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:25:9-35
+	android:label
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:23:9-41
+	android:roundIcon
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:24:9-54
+	android:icon
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:22:9-43
+	android:allowBackup
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:21:9-35
+	android:theme
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:26:9-40
+activity#com.example.chinesejar.sipdemo.MainActivity
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:27:9-33:20
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:27:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:28:13-32:29
+action#android.intent.action.MAIN
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:29:17-69
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:29:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:31:17-77
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:31:27-74
+activity#com.example.chinesejar.sipdemo.PackageActivity
+ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:34:9-37:56
+	android:label
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:36:13-59
+	android:theme
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:37:13-44
+	android:name
+		ADDED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml:35:13-44
+uses-sdk
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/4eec02eff9bf1a38f5c8c51c8c6cfdb3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/4eec02eff9bf1a38f5c8c51c8c6cfdb3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7bcfed2adc073a7c779cb6596249e101/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7bcfed2adc073a7c779cb6596249e101/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:21:5-23:58
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+		INJECTED from /home/chinesejar/AndroidStudioProjects/simulate-volte/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:design:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/b09a93369df4665f43550f095a79d383/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/bc1122ccd304901f988b418ee1f29351/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/9c8cbd9463afc70ec621c118b8f2698f/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7bcfed2adc073a7c779cb6596249e101/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7bcfed2adc073a7c779cb6596249e101/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/a5583c0fdfe09844096b65821628eec4/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/33b9b5fd4590857b03b112a093595f04/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/dd4925936239f586141168e1f015b440/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/a15192a21722c30eaf55a3771d9b2f3a/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/b815e93a64dbd092a439ac85e1cddb07/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/0d1f7077c93388e8dc27c0d3138b3597/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/879a94a95292b7f31d5225b83948f1a4/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /home/chinesejar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/7ea6dd9232867310b9968c5140409c39/AndroidManifest.xml:26:9-47
