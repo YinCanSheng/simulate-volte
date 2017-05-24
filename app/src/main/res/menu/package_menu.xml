@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:id="@+id/action_register"
+        android:title="@string/action_register"
+        android:orderInCategory="80" />
+    <item android:id="@+id/action_invite"
+        android:title="@string/action_invite"
+        android:orderInCategory="80" />
+    <item android:id="@+id/action_option"
+        android:title="@string/action_option"
+        android:orderInCategory="80" />
+    <item android:id="@+id/action_refer"
+        android:title="@string/action_refer"
+        android:orderInCategory="80" />
+
+</menu>
