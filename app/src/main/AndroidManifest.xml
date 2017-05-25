@@ -31,10 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PackageActivity"
-            android:label="@string/title_activity_package"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".PackageActivity"></activity>
     </application>
 
 </manifest>

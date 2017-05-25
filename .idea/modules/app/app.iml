@@ -79,6 +79,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/build-info" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/classes-jar" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build/intermediates/incremental" />
