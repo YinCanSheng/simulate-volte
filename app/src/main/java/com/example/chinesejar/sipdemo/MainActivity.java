@@ -21,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import java.io.IOError;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Toolbar.OnMenuItemClickListener, RadioGroup.OnCheckedChangeListener, IMainView {
 
     private MainPresenter mainPresenter;
@@ -156,11 +159,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         super.onActivityResult(requestCode, resultCode, intent);
-        String type = intent.getStringExtra("type");
-        String data = intent.getStringExtra("data");
-        if(requestCode == 1000 && resultCode == 1001)
-        {
-            mainPresenter.setPackageData(type, data);
+        try {
+            String type = intent.getStringExtra("type");
+            String data = intent.getStringExtra("data");
+            if(requestCode == 1000 && resultCode == 1001)
+            {
+                mainPresenter.setPackageData(type, data);
+            }
+        }
+        catch (Exception e){
+            Log.e("err", e.getMessage());
         }
     }
 
@@ -208,6 +216,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("log", msg);
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
-
 
 }

@@ -1,6 +1,8 @@
 package com.example.chinesejar.sipdemo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +57,11 @@ public class PackageActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("type", package_type);
         intent.putExtra("data", tv_package.getText().toString());
         setResult(1001, intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
         finish();
     }
 }
