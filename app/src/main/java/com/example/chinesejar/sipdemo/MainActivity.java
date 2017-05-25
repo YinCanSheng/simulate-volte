@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -162,6 +163,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainPresenter.setPackageData(type, data);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        // 创建退出对话框
+        AlertDialog isExit = new AlertDialog.Builder(this).create();
+        // 设置对话框标题
+        isExit.setTitle("退出程序");
+        // 设置对话框消息
+        isExit.setMessage("确定要退出吗");
+        // 添加选择按钮并注册监听
+        isExit.setButton(AlertDialog.BUTTON_POSITIVE, "确定", backListener);
+        isExit.setButton(AlertDialog.BUTTON_NEGATIVE, "取消", backListener);
+        // 显示对话框
+        isExit.show();
+    }
+
+    DialogInterface.OnClickListener backListener = new DialogInterface.OnClickListener()
+    {
+        @Override
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
+                    finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     public void sendSuccess(String msg){
