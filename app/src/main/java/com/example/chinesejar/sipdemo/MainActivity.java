@@ -125,26 +125,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     case 0:
                                         Log.d("package", "REGISTER");
                                         intent.putExtra("msg", "REGISTER");
+                                        intent.putExtra("data", mainPresenter.getPackageData("REGISTER"));
                                         break;
                                     case 1:
                                         Log.d("package", "INVITE");
                                         intent.putExtra("msg", "INVITE");
+                                        intent.putExtra("data", mainPresenter.getPackageData("INVITE"));
                                         break;
                                     case 2:
                                         Log.d("package", "OPTION");
                                         intent.putExtra("msg", "OPTION");
+                                        intent.putExtra("data", mainPresenter.getPackageData("OPTION"));
                                         break;
                                     case 3:
                                         Log.d("package", "REFER");
                                         intent.putExtra("msg", "REFER");
+                                        intent.putExtra("data", mainPresenter.getPackageData("REFER"));
                                         break;
                                 }
-                                startActivity(intent);
+                                startActivityForResult(intent, 1000);
                             }
                         }).show();
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent)
+    {
+        super.onActivityResult(requestCode, resultCode, intent);
+        String type = intent.getStringExtra("type");
+        String data = intent.getStringExtra("data");
+        if(requestCode == 1000 && resultCode == 1001)
+        {
+            mainPresenter.setPackageData(type, data);
+        }
     }
 
     @Override
