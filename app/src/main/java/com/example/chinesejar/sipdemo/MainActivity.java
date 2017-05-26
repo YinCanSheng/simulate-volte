@@ -92,7 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String item_text = spinner_networks.getAdapter().getItem(position).toString();
         Log.d("selected", item_text);
         if(item_text.equals("自定义")){
+            srcIPLinearLayout.setAlpha(0f);
             srcIPLinearLayout.setVisibility(View.VISIBLE);
+            srcIPLinearLayout.animate().alpha(1f).setDuration(500);
         }else{
             srcIPLinearLayout.setVisibility(View.GONE);
         }

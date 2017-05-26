@@ -125,14 +125,18 @@ public class MainPresenter {
 
     public void socket_send(String tv_address, String displayName, String socket_type, String package_type){
         package_data = getPackageData(package_type);
-        if (false) {
-            view.sendFailed("请输入正确的 IPv6 地址");
+        if (tv_address == null || tv_address.length() == 0) {
+            view.sendFailed("请输入正确的目标 IPv6 地址");
         } else {
             try {
                 address = Inet6Address.getByName(tv_address); //Inet6Address.getByName("2409:8010:8810:1:1003:1003::");
 
                 if(displayName.equals("自定义")){
-                    inetAddress = Inet6Address.getByName(view.getSrcIP());
+                    String src_address = view.getSrcIP();
+                    if (src_address == null || src_address.length() == 0){
+                        view.sendFailed("请输入正确的本机 IPv6 地址");
+                    }
+                    inetAddress = Inet6Address.getByName(src_address);
                     if(socket_type.equals("TCP")){
                         new SendTCPSocketTask().execute();
                     }else if(socket_type.equals("UDP")){
