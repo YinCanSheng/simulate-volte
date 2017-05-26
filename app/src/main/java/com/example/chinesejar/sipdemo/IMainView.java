@@ -9,4 +9,6 @@ public interface IMainView {
     void sendSuccess(String msg);
 
     void sendFailed(String msg);
+
+    String getSrcIP();
 }

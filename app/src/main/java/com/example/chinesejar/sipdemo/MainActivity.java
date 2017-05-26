@@ -7,13 +7,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -21,17 +22,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
-import java.io.IOError;
-import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Toolbar.OnMenuItemClickListener, RadioGroup.OnCheckedChangeListener, IMainView {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Toolbar.OnMenuItemClickListener, Spinner.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, IMainView {
 
     private MainPresenter mainPresenter;
 
     private Toolbar toolbar = null;
 
+    private LinearLayout srcIPLinearLayout = null;
     private Spinner spinner_networks = null;
     private EditText et_dstip = null;
+    private EditText et_srcip = null;
     private ArrayAdapter<String> adapter = null;
     private TextView tv_receive = null;
     private Button btn_send = null;
@@ -57,8 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(this);
 
+        srcIPLinearLayout = (LinearLayout) findViewById(R.id.src_area);
         spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
         et_dstip = (EditText) findViewById(R.id.et_dstip);
+        et_srcip = (EditText) findViewById(R.id.et_srcip);
         tv_receive = (TextView) findViewById(R.id.tv_receive);
 
         socketRadioGroup = (RadioGroup) findViewById(R.id.radio_group_socket);
@@ -75,12 +78,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将适配器添加到spinner中去
         spinner_networks.setAdapter(adapter);
+        spinner_networks.setOnItemSelectedListener(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item_text = spinner_networks.getAdapter().getItem(position).toString();
+        Log.d("selected", item_text);
+        if(item_text.equals("自定义")){
+            srcIPLinearLayout.setVisibility(View.VISIBLE);
+        }else{
+            srcIPLinearLayout.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     @Override
@@ -215,6 +235,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void sendFailed(String msg){
         Log.d("log", msg);
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public String getSrcIP(){
+        return et_srcip.getText().toString();
     }
 
 }

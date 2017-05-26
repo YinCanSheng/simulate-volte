@@ -54,6 +54,26 @@
             android:layout_height="match_parent"></Spinner>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/src_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_margin="5px"
+            android:padding="10dp"
+            android:text="@string/src_ipv6"/>
+        <EditText
+            android:id="@+id/et_srcip"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

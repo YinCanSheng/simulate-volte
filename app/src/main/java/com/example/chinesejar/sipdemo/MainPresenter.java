@@ -119,6 +119,7 @@ public class MainPresenter {
         } catch (SocketException e) {
 
         }
+        network_interfaces.add("自定义");
         return network_interfaces;
     }
 
@@ -130,23 +131,32 @@ public class MainPresenter {
             try {
                 address = Inet6Address.getByName(tv_address); //Inet6Address.getByName("2409:8010:8810:1:1003:1003::");
 
-                List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-                for (NetworkInterface iface : interfaces) {
-                    if (iface.getDisplayName().equals(displayName)) {
-                        Enumeration<InetAddress> nifAddresses = iface.getInetAddresses();
+                if(displayName.equals("自定义")){
+                    inetAddress = Inet6Address.getByName(view.getSrcIP());
+                    if(socket_type.equals("TCP")){
+                        new SendTCPSocketTask().execute();
+                    }else if(socket_type.equals("UDP")){
+                        new SendUDPSocketTask().execute();
+                    }
+                } else {
+                    List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+                    for (NetworkInterface iface : interfaces) {
+                        if (iface.getDisplayName().equals(displayName)) {
+                            Enumeration<InetAddress> nifAddresses = iface.getInetAddresses();
 
-                        while (nifAddresses.hasMoreElements()) {
-                            InetAddress ni = nifAddresses.nextElement();
-                            if (ni.toString().substring(1, 5).equals("2409")) {
-                                Log.i(">>>>>>", ni.toString());
-                                inetAddress = ni;
-                                if(socket_type.equals("TCP")){
-                                    new SendTCPSocketTask().execute();
-                                }else if(socket_type.equals("UDP")){
-                                    new SendUDPSocketTask().execute();
+                            while (nifAddresses.hasMoreElements()) {
+                                InetAddress ni = nifAddresses.nextElement();
+                                if (ni.toString().substring(1, 5).equals("2409")) {
+                                    Log.i(">>>>>>", ni.toString());
+                                    inetAddress = ni;
+                                    if (socket_type.equals("TCP")) {
+                                        new SendTCPSocketTask().execute();
+                                    } else if (socket_type.equals("UDP")) {
+                                        new SendUDPSocketTask().execute();
+                                    }
+
+                                    break;
                                 }
-
-                                break;
                             }
                         }
                     }

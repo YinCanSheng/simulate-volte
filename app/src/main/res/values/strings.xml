@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">sipdemo</string>
     <string name="dst_ipv6">目标IPv6地址</string>
+    <string name="src_ipv6">本地IPv6地址</string>
     <string name="network_interface">网络接口名称</string>
     <string name="socket_type">Socket 类型</string>
     <string name="package_type">报文类型</string>
