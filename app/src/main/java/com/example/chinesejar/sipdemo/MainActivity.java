@@ -1,11 +1,17 @@
 package com.example.chinesejar.sipdemo;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.IdRes;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Toolbar.OnMenuItemClickListener, Spinner.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener, IMainView {
 
@@ -30,18 +40,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Toolbar toolbar = null;
 
     private LinearLayout srcIPLinearLayout = null;
-    private Spinner spinner_networks = null;
-    private EditText et_dstip = null;
-    private EditText et_srcip = null;
+    private Spinner spinnerNetworks = null;
+    private EditText editDstIP = null;
+    private EditText editSrcIP = null;
     private ArrayAdapter<String> adapter = null;
-    private TextView tv_receive = null;
-    private Button btn_send = null;
-    private Button btn_clear = null;
+    private TextView tvReceive = null;
+    private Button btnSend = null;
+    private Button btnClear = null;
 
     private RadioGroup socketRadioGroup = null;
     private RadioGroup packageRadioGroup = null;
-    private String socket_type = "TCP";
-    private String package_type = "REGISTER";
+    private String socketType = "TCP";
+    private String packageType = "REGISTER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,36 +59,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initView();
+
     }
 
     private void initView() {
-        mainPresenter = new MainPresenter(this);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(this);
 
         srcIPLinearLayout = (LinearLayout) findViewById(R.id.src_area);
-        spinner_networks = (Spinner) findViewById(R.id.spinner_networks);
-        et_dstip = (EditText) findViewById(R.id.et_dstip);
-        et_srcip = (EditText) findViewById(R.id.et_srcip);
-        tv_receive = (TextView) findViewById(R.id.tv_receive);
+        spinnerNetworks = (Spinner) findViewById(R.id.spinner_networks);
+        editDstIP = (EditText) findViewById(R.id.et_dstip);
+        editSrcIP = (EditText) findViewById(R.id.et_srcip);
+        tvReceive = (TextView) findViewById(R.id.tv_receive);
 
         socketRadioGroup = (RadioGroup) findViewById(R.id.radio_group_socket);
         socketRadioGroup.setOnCheckedChangeListener(this);
         packageRadioGroup = (RadioGroup) findViewById(R.id.radio_group_package);
         packageRadioGroup.setOnCheckedChangeListener(this);
-        btn_send = (Button) findViewById(R.id.btn_send);
-        btn_send.setOnClickListener(this);
-        btn_clear = (Button) findViewById(R.id.btn_clear);
-        btn_clear.setOnClickListener(this);
+        btnSend = (Button) findViewById(R.id.btn_send);
+        btnSend.setOnClickListener(this);
+        btnClear = (Button) findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(this);
+
+        mainPresenter = new MainPresenter(this);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mainPresenter.getNetworkInterfaces());
         //设置下拉列表风格
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将适配器添加到spinner中去
-        spinner_networks.setAdapter(adapter);
-        spinner_networks.setOnItemSelectedListener(this);
+        spinnerNetworks.setAdapter(adapter);
+        spinnerNetworks.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -89,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item_text = spinner_networks.getAdapter().getItem(position).toString();
+        String item_text = spinnerNetworks.getAdapter().getItem(position).toString();
         Log.d("selected", item_text);
         if(item_text.equals("自定义")){
             srcIPLinearLayout.setAlpha(0f);
@@ -110,18 +121,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RadioButton rd = (RadioButton) findViewById(checkedId);
         switch (group.getId()){
             case R.id.radio_group_socket:
-                socket_type = rd.getText().toString();
-                Log.d("socket checked", socket_type);
+                socketType = rd.getText().toString();
+                Log.d("socket checked", socketType);
                 break;
             case R.id.radio_group_package:
-                package_type = rd.getText().toString();
-                Log.d("package checked", package_type);
+                packageType = rd.getText().toString();
+                Log.d("package checked", packageType);
                 break;
         }
     }
 
     private void tvClear(){
-        tv_receive.setText("");
+        tvReceive.setText("");
     }
 
     @Override
@@ -133,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_send:
                 Log.d("click", "CLICK");
-                mainPresenter.socket_send(et_dstip.getText().toString(), spinner_networks.getSelectedItem().toString(), socket_type, package_type);
+                mainPresenter.socketSend(editDstIP.getText().toString(), socketType, packageType);
                 break;
         }
     }
@@ -230,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void sendSuccess(String msg){
         Log.d("log", msg);
-        tv_receive.append(msg);
+        tvReceive.append(msg);
     }
 
     @Override
@@ -241,7 +252,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public String getSrcIP(){
-        return et_srcip.getText().toString();
+        return editSrcIP.getText().toString();
+    }
+
+    @Override
+    public String getDstIP(){
+        return editDstIP.getText().toString();
+    }
+
+    @Override
+    public String getNetworkInterface(){
+        return spinnerNetworks.getSelectedItem().toString();
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    @Override
+    public String getIMSI() {
+        String imsi = null;
+        TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        try {
+            Method getSubId = TelephonyManager.class.getMethod("getSubscriberId", int.class);
+            SubscriptionManager sm = (SubscriptionManager) getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);
+            imsi = (String) getSubId.invoke(tm, sm.getActiveSubscriptionInfoForSimSlotIndex(0).getSubscriptionId()); // Sim slot 1 IMSI
+            return imsi;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return imsi;
     }
 
 }

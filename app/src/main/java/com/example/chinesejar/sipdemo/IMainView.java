@@ -11,4 +11,10 @@ public interface IMainView {
     void sendFailed(String msg);
 
     String getSrcIP();
+
+    String getIMSI();
+
+    String getNetworkInterface();
+
+    String getDstIP();
 }

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/simulate-volte.iml" filepath="$PROJECT_DIR$/.idea/modules/simulate-volte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simulate-volte.iml" filepath="$PROJECT_DIR$/simulate-volte.iml" />
     </modules>
   </component>
 </project>
