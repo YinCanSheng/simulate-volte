@@ -16,6 +16,7 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.nio.channels.DatagramChannel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -40,7 +41,7 @@ public class MainPresenter {
     public String getPackageRegister() {
         String imsi = view.getIMSI();
         InetAddress ia = getInetAddress();
-        if(imsi != null && ia != null) {
+        if (imsi != null && ia != null) {
             String address = ia.getHostAddress();
             return "REGISTER sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
                     "f: <sip:" + imsi + "@ims.mnc002.mcc460.3gppnetwork.org>;tag=1769467592\r\n" +
@@ -53,7 +54,7 @@ public class MainPresenter {
                     "P-Access-Network-Info: 3GPP-E-UTRAN-TDD; utran-cell-id-3gpp=46000102D108F00D\r\n" +
                     "Security-Verify: ipsec-3gpp;alg=hmac-md5-96;prot=esp;mod=trans;ealg=null;spi-c=2634663370;spi-s=3399226064;port-c=9950;port-s=9900\r\n" +
                     "l: 0\r\n" +
-                    "Authorization: Digest username=\"460027953821652@ims.mnc002.mcc460.3gppnetwork.org\",realm=\"ims.mnc002.mcc460.3gppnetwork.org\",uri=\"sip:ims.mnc002.mcc460.3gppnetwork.org\",nonce=\"SVLOv+/iIqtM7mwk9MoGxLZz0aj5V3JMT5MM5VPmcdY=\",algorithm=AKAv1-MD5,response=\"6adb27c78ae901dd986cd61eb8de0b94\"\r\n" +
+                    "Authorization: Digest username=\"" + imsi + "@ims.mnc002.mcc460.3gppnetwork.org\",realm=\"ims.mnc002.mcc460.3gppnetwork.org\",uri=\"sip:ims.mnc002.mcc460.3gppnetwork.org\",nonce=\"SVLOv+/iIqtM7mwk9MoGxLZz0aj5V3JMT5MM5VPmcdY=\",algorithm=AKAv1-MD5,response=\"6adb27c78ae901dd986cd61eb8de0b94\"\r\n" +
                     "Expires: 600000\r\n" +
                     "Require: sec-agree\r\n" +
                     "Proxy-Require: sec-agree\r\n" +
@@ -64,12 +65,13 @@ public class MainPresenter {
         }
         return "";
     }
+
     private String packageInvite = null;
 
     public String getPackageInvite() {
         String dstAddress = view.getDstIP();
         InetAddress ia = getInetAddress();
-        if(dstAddress != null && ia != null) {
+        if (dstAddress != null && ia != null) {
             String address = ia.getHostAddress();
             return "INVITE tel:18210173588;phone-context=ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
                     "f: <tel:+8615008603839>;tag=1769475601\r\n" +
@@ -96,11 +98,12 @@ public class MainPresenter {
         }
         return "";
     }
+
     private String packageOption = null;
 
     public String getPackageOption() {
         InetAddress ia = getInetAddress();
-        if(ia != null) {
+        if (ia != null) {
             String address = ia.getHostAddress();
             return "OPTIONS sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
                     "Via: SIP/2.0/TCP [" + address + "]:8901;branch=z9hG4bK1519469541\r\n" +
@@ -115,12 +118,13 @@ public class MainPresenter {
         }
         return "";
     }
+
     private String packageRefer = null;
 
     public String getPackageRefer() {
         InetAddress ia = getInetAddress();
-        if(ia != null) {
-            String address = ia.getHostAddress();
+        if (ia != null) {
+            String address = ia.getHostAddress().substring(0, ia.getHostAddress().indexOf('%'));
             return "REFER sip:ims.mnc002.mcc460.3gppnetwork.org SIP/2.0\r\n" +
                     "Via: SIP/2.0/TCP [" + address + "]:8901;branch=z9hG4bK1519469541\r\n" +
                     "Max-Forwards: 70\r\n" +
@@ -139,8 +143,8 @@ public class MainPresenter {
         this.view = view;
     }
 
-    public void setPackageData(String type, String data){
-        switch (type){
+    public void setPackageData(String type, String data) {
+        switch (type) {
             case "REGISTER":
                 packageRegister = data;
             case "OPTION":
@@ -152,7 +156,7 @@ public class MainPresenter {
         }
     }
 
-    public List<String> getNetworkInterfaces(){
+    public List<String> getNetworkInterfaces() {
         List<String> networkInterfaces = new ArrayList<String>();
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -168,15 +172,15 @@ public class MainPresenter {
     }
 
     // 获取 IPv6 地址
-    public InetAddress getInetAddress(){
+    public InetAddress getInetAddress() {
         String displayName = view.getNetworkInterface();
-        try{
-            if(displayName.equals("自定义")){
+        try {
+            if (displayName.equals("自定义")) {
                 String srcAddress = view.getSrcIP();
-                if (srcAddress == null || srcAddress.length() == 0){
+                if (srcAddress == null || srcAddress.length() == 0) {
                     return null;
                 }
-                return Inet6Address.getByName(srcAddress);
+                return InetAddress.getByName(srcAddress);
             } else {
                 List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
                 for (NetworkInterface iface : interfaces) {
@@ -193,22 +197,21 @@ public class MainPresenter {
                     }
                 }
             }
-        }
-        catch (UnknownHostException e){
+        } catch (UnknownHostException e) {
             Log.e(TAG, e.getMessage());
-        }catch (SocketException e){
+        } catch (SocketException e) {
             Log.e(TAG, e.getMessage());
         }
         return null;
     }
 
-    public void socketSend(String tvAddress, String socketType, String packageType){
+    public void socketSend(String tvAddress, String socketType, String packageType) {
         packageData = getPackageData(packageType);
         if (tvAddress == null || tvAddress.length() == 0) {
             view.sendFailed("请输入正确的目标 IPv6 地址");
         } else {
             inetAddress = getInetAddress();
-            if (inetAddress != null){
+            if (inetAddress != null) {
                 try {
                     address = Inet6Address.getByName(tvAddress); //Inet6Address.getByName("2409:8010:8810:1:1003:1003::");
                     if (socketType.equals("TCP")) {
@@ -223,16 +226,23 @@ public class MainPresenter {
         }
     }
 
+    public void initPackageData() {
+        packageRegister = getPackageRegister();
+        packageInvite = getPackageInvite();
+        packageOption = getPackageOption();
+        packageRefer = getPackageRefer();
+    }
+
     public String getPackageData(String package_type) {
-        switch (package_type){
+        switch (package_type) {
             case "REGISTER":
-                return getPackageRegister();
+                return packageRegister;
             case "OPTION":
-                return getPackageOption();
+                return packageOption;
             case "INVITE":
-                return getPackageInvite();
+                return packageInvite;
             case "REFER":
-                return getPackageRefer();
+                return packageRefer;
             default:
                 return null;
         }
@@ -257,7 +267,7 @@ public class MainPresenter {
 
                     byte[] inBuff = new byte[4096];
                     // 以指定的字节数组创建准备接收数据的DatagramPacket对象
-                    DatagramPacket inPacket = new DatagramPacket(inBuff , inBuff.length);
+                    DatagramPacket inPacket = new DatagramPacket(inBuff, inBuff.length);
 
                     socket.setSoTimeout(5000);
                     socket.send(packet);
@@ -316,9 +326,9 @@ public class MainPresenter {
                 //发送数据到服务端
                 out.println(str);
 
-                String reply=null;
-                while(!((reply=buf.readLine())==null)){
-                    res += reply+"\n";
+                String reply = null;
+                while (!((reply = buf.readLine()) == null)) {
+                    res += reply + "\n";
                 }
 
                 if (socket != null) {

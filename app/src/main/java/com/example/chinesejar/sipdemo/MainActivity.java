@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //将适配器添加到spinner中去
         spinnerNetworks.setAdapter(adapter);
         spinnerNetworks.setOnItemSelectedListener(this);
+
+        mainPresenter.initPackageData();
     }
 
     @Override
@@ -270,17 +273,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String getIMSI() {
         String imsi = null;
         TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        try {
-            Method getSubId = TelephonyManager.class.getMethod("getSubscriberId", int.class);
-            SubscriptionManager sm = (SubscriptionManager) getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);
-            imsi = (String) getSubId.invoke(tm, sm.getActiveSubscriptionInfoForSimSlotIndex(0).getSubscriptionId()); // Sim slot 1 IMSI
-            return imsi;
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+        try{
+            imsi = tm.getSubscriberId();
+        }catch (Exception e){
+
+        }
+        if (imsi == null) {
+            try {
+                Method getSubId = TelephonyManager.class.getMethod("getSubscriberId", int.class);
+                SubscriptionManager sm = (SubscriptionManager) getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);
+                imsi = (String) getSubId.invoke(tm, sm.getActiveSubscriptionInfoForSimSlotIndex(0).getSubscriptionId()); // Sim slot 1 IMSI
+                return imsi;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
         }
         return imsi;
     }
